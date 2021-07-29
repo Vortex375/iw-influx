@@ -1,0 +1,42 @@
+load:
+  - iw-base/modules/udp-discovery
+  - ./modules/influxdb-writer
+
+modules:
+  - component: udp-discovery
+    priority: -1
+    await: connected
+    config:
+      clientConfig:
+        friendlyName: influxdb-writer
+      requestPort: 6031
+
+  - component: influxdb-writer
+    config:
+      recordName: climate-sensor/Wohnzimmer
+      url: &influx_url "http://localhost:8086/iw"
+      measurement: &temp_measurement "temp_humid"
+      tags:
+        room: "Wohnzimmer"
+      fields: &temp_fields
+        temperature: "<%= data.temperature %>"
+        humidity: "<%= data.humidity %>"
+      timestamp: &temp_timestamp "<%= new Date(data.time).getTime() %>"
+  - component: influxdb-writer
+    config:
+      recordName: climate-sensor/Kueche
+      url: *influx_url
+      measurement: *temp_measurement
+      tags:
+        room: "Kueche"
+      fields: *temp_fields
+      timestamp: *temp_timestamp
+  - component: influxdb-writer
+    config:
+      recordName: climate-sensor/Schlafzimmer
+      url: *influx_url
+      measurement: *temp_measurement
+      tags:
+        room: "Schlafzimmer"
+      fields: *temp_fields
+      timestamp: *temp_timestamp

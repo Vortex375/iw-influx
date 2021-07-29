@@ -1,0 +1,31 @@
+{
+  "name": "iw-influx",
+  "version": "0.0.1",
+  "description": "InfluxDB connector for iw",
+  "author": "Benjamin Schmitz",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vortex375/iw-influx.git"
+  },
+  "scripts": {
+    "build": "rimraf dist && npm run build-ts",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\"",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w",
+    "tslint": "tslint -c tslint.json -p tsconfig.json"
+  },
+  "dependencies": {
+    "@deepstream/client": "^5.2.4",
+    "@deepstream/types": "^2.2.0",
+    "influx": "^5.9.2",
+    "iw-base": "^0.0.1",
+    "iw-ioc": "^0.0.1",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.161",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.0.3"
+  }
+}
