@@ -52,7 +52,7 @@ export class InfluxdbWriter extends Service {
         const point = {
           tags: mapValues(this.tagTemplates, tpl => tpl({data})),
           fields: mapValues(this.fieldTemplates, tpl => +tpl({data})),
-          timestamp: this.timestampTemplate ? +this.timestampTemplate({data}) : undefined
+          timestamp: this.timestampTemplate ? +this.timestampTemplate({data}) * 1_000_000 : undefined
         }
         log.debug(point, 'writing datapoint');
         await this.influxdb.writeMeasurement(this.measurement, [point]);
