@@ -16,8 +16,8 @@
     "tslint": "tslint -c tslint.json -p tsconfig.json"
   },
   "dependencies": {
-    "@deepstream/client": "^5.2.6",
-    "@deepstream/types": "^2.2.0",
+    "@deepstream/client": "^6.0.5",
+    "@deepstream/types": "^2.3.0",
     "influx": "^5.9.2",
     "iw-base": "^0.0.1",
     "iw-ioc": "^0.0.1",
